@@ -1,0 +1,61 @@
+<view class='container'>
+  <view class='title'>test-page</view>
+  <!-- <view class='scroll-view scroll-y'>
+    <image src='http://wangchaozhen.com/imgs/Top-Banner/1.jpg' mode='widthFix'></image>
+    <image src='http://wangchaozhen.com/imgs/Top-Banner/2.jpg' mode='widthFix' ></image>
+    <image src='http://wangchaozhen.com/imgs/Top-Banner/3.jpg' mode='widthFix' ></image>
+    <image src='http://wangchaozhen.com/imgs/Top-Banner/4.jpg' mode='widthFix' ></image>
+  </view>
+
+  <view class='scroll-view scroll-x'>
+    <image src='http://wangchaozhen.com/imgs/Top-Banner/1.jpg' mode='widthFix'></image>
+    <image src='http://wangchaozhen.com/imgs/Top-Banner/2.jpg' mode='widthFix' ></image>
+    <image src='http://wangchaozhen.com/imgs/Top-Banner/3.jpg' mode='widthFix' ></image>
+    <image src='http://wangchaozhen.com/imgs/Top-Banner/4.jpg' mode='widthFix' ></image>
+  </view> -->
+
+  <swiper 
+    indicator-dots="{{indicatorDots}}"
+    autoplay="{{autoplay}}" 
+    interval="{{interval}}" 
+    duration="{{duration}}"
+    class='swiper'>
+
+    <block wx:for="{{imgUrls}}" wx:key='{{ index }}'>
+      <swiper-item>
+        <image src="{{item}}" class="slide-image" mode='widthFix'/>
+      </swiper-item>
+    </block>
+  </swiper>
+
+
+
+
+<view class='icons'>
+  <icon type='success' color='red'></icon>
+  <icon type='success_no_circle' color='red'></icon>
+  <icon type='info' color='red'></icon>
+  <icon type='warn' color='red'></icon>
+  <icon type='clear' color='red'></icon>
+  <progress percent="20" show-info />
+</view>
+
+<checkbox-group bindchange="checkboxChange">
+  <label class="checkbox" wx:for="{{items}}">
+    <checkbox value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+  </label>
+</checkbox-group>
+
+
+
+<view class="section">
+  <view class="section__title">movable-view区域小于movable-area</view>
+  <movable-area style="height: 200px; width: 200px; background: red;">
+    <movable-view style="height: 50px; width: 50px; background: blue;" x="{{x}}" y="{{y}}" direction="all">
+    </movable-view>
+  </movable-area>
+  <view class="btn-area">
+    <button size="mini" bindtap="tap">click me to move to (30px, 30px)</button>
+  </view>
+</view>
+</view>

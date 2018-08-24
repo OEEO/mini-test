@@ -1,0 +1,28 @@
+/* pages/test/test.wxss */
+.title {
+  font-size: 60rpx;
+  margin-bottom: 40rpx
+}
+.scroll-view {
+  text-align: center;
+  width: 650rpx;
+  height: 320rpx;
+  overflow-x: scroll;
+}
+.scroll-view image {
+  width: 650rpx;
+}
+.scroll-y {
+  overflow-y: scroll;
+}
+.scroll-x {
+  margin-top: 50rpx;
+  overflow-y: scroll;
+  white-space: nowrap;
+}
+
+.swiper {
+  height: 320rpx;
+  width: 650rpx;
+  margin: 60rpx auto;
+}
