@@ -1,35 +1,12 @@
 Page({
   data: {
-    hasCameraAuth: false
   },
   onLoad () {
-    console.log('load')
-    let that = this
-    wx.getSetting({
-      success: (res) => {
-        if (res.authSetting['scope.camera']) {
-          that.setData({
-            hasCameraAuth: res.authSetting['scope.camera']
-          })
-        }
-      }
-    })
   },
   onShow() {
-    let that = this
-    console.log('show')
-    wx.getSetting({
-      success: (res) => {
-        if (res.authSetting['scope.camera']) {
-          that.setData({
-            hasCameraAuth: res.authSetting['scope.camera']
-          })
-        }
-      }
-    })
   },
-	takePhoto() {
-		const ctx = wx.createCameraContext()
+  takePhoto() {
+		let ctx = wx.createCameraContext()
 		ctx.takePhoto({
 			quality: 'high',
 			success: (res) => {
@@ -39,7 +16,11 @@ Page({
 			}
 		})
 	},
-	error(e) {
-		console.log(e.detail)
-	}
+  getCameraAuthError () {
+    let that = this
+    wx.showToast({
+      title: '请先授权应用使用摄像头',
+      icon: 'none'
+    })
+  }
 })

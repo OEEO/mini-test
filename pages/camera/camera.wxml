@@ -1,5 +1,5 @@
-<camera device-position="back" flash="off" binderror="error" style="width: 100%; height: 300px;"></camera>
+<camera device-position="back" flash="off" binderror="getCameraAuthError" style="width: 100vw; height: 300px;"></camera>
 <button type="primary" bindtap="takePhoto">拍照</button>
-<button open-type='openSetting' wx:if='{{ !hasCameraAuth }}'>授权使用照相功能</button>
+
 <view>预览</view>
 <image mode="widthFix" src="{{src}}"></image>

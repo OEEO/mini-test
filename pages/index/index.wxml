@@ -1,13 +1,14 @@
 <!--index.wxml-->
 <view class="container">
   <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <button class='nav-btn' wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 登录 </button>
     <block wx:else>
       <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <button bindtap='goToMapPage'>地图</button>
-  <button bindtap='goToPickerPage'>选择器</button>
-  <button bindtap='goToCameraPage'>照相</button>
+  <button class='nav-btn' bindtap='goToMapPage'>地图</button>
+  <button class='nav-btn' bindtap='goToPickerPage'>选择器</button>
+  <button class='nav-btn' bindtap='goToCameraPage' wx:if='{{ hasCameraAuth === null || hasCameraAuth === true }}'>拍照</button>
+  <button class='nav-btn' open-type='openSetting' wx:if='{{ hasCameraAuth === false }}'>拍照</button>
 </view>

@@ -19,3 +19,7 @@
 .usermotto {
   margin-top: 200px;
 }
+.nav-btn {
+  width: 60vw;
+  margin-top: 30rpx;
+}

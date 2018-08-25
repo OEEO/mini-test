@@ -7,6 +7,7 @@ Page({
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
+    hasCameraAuth: null,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
@@ -43,6 +44,9 @@ Page({
       })
     }
   },
+  onShow() {
+    this.getCameraAuth()
+  },
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
@@ -61,9 +65,54 @@ Page({
       url: '/pages/picker/picker',
     })
   },
+  getCameraAuth () {
+    let that = this
+    wx.getSetting({
+      success: (res) => {
+        console.log(res)
+        if (res.authSetting['scope.camera'] === true) {
+          console.log(res)
+          that.setData({
+            hasCameraAuth: true
+          })
+        } else if (res.authSetting['scope.camera'] === false) {
+          that.setData({
+            hasCameraAuth: false
+          })
+        }
+      }
+    })
+  },
   goToCameraPage () {
-    wx.navigateTo({
-      url: '/pages/camera/camera',
+    let that = this
+    wx.getSetting({
+      success(res) {
+        if (!res.authSetting['scope.camera']) {
+          wx.authorize({
+            scope: 'scope.camera',
+            success() {
+              wx.navigateTo({
+                url: '/pages/camera/camera',
+              })
+              that.setData({
+                hasCameraAuth: true
+              })
+            },
+            fail() {
+              that.setData({
+                hasCameraAuth: false
+              })
+              wx.showToast({
+                title: '请先授权',
+              })
+            }
+          })
+        } else {
+          wx.navigateTo({
+            url: '/pages/camera/camera',
+          })
+        }
+      }
     })
   }
 })
